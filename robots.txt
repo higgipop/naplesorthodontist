@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naplesorthodontist.com/sitemap.xml
