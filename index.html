@@ -57,6 +57,13 @@ nav{background:#0D3A6E;padding:.85rem 2.5rem;display:flex;align-items:center;jus
 .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#F5C518}
 .nav-cta{background:#F5C518;color:#0D3A6E!important;font-weight:800!important;padding:.45rem 1.1rem;border-radius:6px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown>span{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;cursor:pointer;user-select:none;transition:color .2s}
+.nav-dropdown:hover>span{color:#F5C518}
+.dropdown-menu{position:absolute;top:calc(100% + .6rem);left:50%;transform:translateX(-50%);background:#0a2d57;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.35rem 0;min-width:168px;display:none;box-shadow:0 10px 28px rgba(0,0,0,.35);z-index:200}
+.nav-dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:.5rem 1.1rem;color:rgba(255,255,255,.85);font-size:.84rem;text-decoration:none;white-space:nowrap}
+.dropdown-menu a:hover{background:rgba(255,255,255,.08);color:#F5C518}
 .hero{background:linear-gradient(140deg,#0D3A6E 0%,#1B6CA8 55%,#2196c4 100%);padding:5.5rem 2rem 5rem;text-align:center;color:white;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:55px;background:white;clip-path:ellipse(58% 100% at 50% 100%)}
 .hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.12;letter-spacing:-.03em;margin-bottom:1rem}
@@ -120,7 +127,7 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .footer-copy{color:rgba(255,255,255,.35);font-size:.72rem}
 @media(max-width:640px){
   nav{padding:.8rem 1.2rem}
-  .nav-links a:not(.nav-cta){display:none}
+  .nav-links a:not(.nav-cta),.nav-dropdown{display:none}
   .hero{padding:3.5rem 1.2rem 4rem}
   .how,.services,.form-section,.faq,.neighborhoods{padding:3.5rem 1.2rem}
   .steps{flex-direction:column;align-items:center}
@@ -136,6 +143,7 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
   .btn-gold,.btn-ghost{width:100%;text-align:center}
 }
 </style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -178,7 +186,15 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
     NaplesOrthodontist<span style="color:#F5C518;">.com</span>
   </a>
   <div class="nav-links">
-    <a href="#services">Services</a>
+    <div class="nav-dropdown">
+      <span>Services ▾</span>
+      <div class="dropdown-menu">
+        <a href="/invisalign-naples-fl/">Invisalign</a>
+        <a href="/braces-naples-fl/">Braces</a>
+        <a href="/orthodontist-cost-naples/">Cost Guide</a>
+        <a href="/kids-orthodontist-naples/">Kids &amp; Teens</a>
+      </div>
+    </div>
     <a href="#faq">FAQ</a>
     <a href="#consult" class="nav-cta">Free Consultation</a>
   </div>
@@ -298,6 +314,7 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
         <option>Not Sure — Just Exploring</option>
       </select>
       <textarea name="notes" placeholder="Any questions or notes? (optional)"></textarea>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADjf6bxpJ_UNPQly" data-theme="light"></div>
       <button type="submit" class="submit-btn">Get My Free Consultation →</button>
       <div class="form-note">We respect your privacy. No spam, ever.</div>
     </form>

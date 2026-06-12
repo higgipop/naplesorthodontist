@@ -17,6 +17,20 @@ export async function onRequestPost({ request, env }) {
     return Response.redirect('https://naplesorthodontist.com/?error=missing', 302);
   }
 
+  const turnstileToken = data.get('cf-turnstile-response') || '';
+  if (!turnstileToken) {
+    return Response.redirect('https://naplesorthodontist.com/?error=captcha', 302);
+  }
+  const tsVerify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret: env.TURNSTILE_SECRET_KEY, response: turnstileToken }),
+  });
+  const tsResult = await tsVerify.json();
+  if (!tsResult.success) {
+    return Response.redirect('https://naplesorthodontist.com/?error=captcha', 302);
+  }
+
   const body = [
     `New lead — NaplesOrthodontist.com`,
     ``,
