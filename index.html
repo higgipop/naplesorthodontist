@@ -282,14 +282,14 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
   <div class="form-wrap">
     <div class="section-title">Ready to Find Your Orthodontist?</div>
     <div class="section-sub">No commitment required — we'll match you with the right Naples provider.</div>
-    <form>
+    <form action="https://form-handler.naplesorthodontist.com/submit" method="POST">
       <div class="form-row">
-        <input type="text" placeholder="First Name" required/>
-        <input type="text" placeholder="Last Name" required/>
+        <input type="text" name="first_name" placeholder="First Name" required/>
+        <input type="text" name="last_name" placeholder="Last Name" required/>
       </div>
-      <input type="email" placeholder="Email Address" required/>
-      <input type="tel" placeholder="Phone Number"/>
-      <select>
+      <input type="email" name="email" placeholder="Email Address" required/>
+      <input type="tel" name="phone" placeholder="Phone Number"/>
+      <select name="interest">
         <option value="" disabled selected>I'm interested in…</option>
         <option>Traditional Braces</option>
         <option>Invisalign</option>
@@ -297,7 +297,7 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
         <option>Treatment for My Child / Teen</option>
         <option>Not Sure — Just Exploring</option>
       </select>
-      <textarea placeholder="Any questions or notes? (optional)"></textarea>
+      <textarea name="notes" placeholder="Any questions or notes? (optional)"></textarea>
       <button type="submit" class="submit-btn">Get My Free Consultation →</button>
       <div class="form-note">We respect your privacy. No spam, ever.</div>
     </form>
@@ -343,5 +343,15 @@ footer{background:#0D3A6E;padding:2rem 2.5rem;display:flex;align-items:center;ju
   </div>
   <div class="footer-copy">© 2026 NaplesOrthodontist.com · Naples, FL</div>
 </footer>
+<div id="success-banner" style="display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#0D3A6E;color:white;padding:1rem 2rem;border-radius:10px;font-weight:700;font-size:.95rem;box-shadow:0 4px 20px rgba(0,0,0,.25);z-index:999;text-align:center;">
+  ✓ Got it! We'll be in touch shortly.
+</div>
+<script>
+  if (new URLSearchParams(location.search).get('submitted') === 'true') {
+    document.getElementById('success-banner').style.display = 'block';
+    setTimeout(() => document.getElementById('success-banner').style.display = 'none', 5000);
+    history.replaceState({}, '', '/');
+  }
+</script>
 </body>
 </html>
